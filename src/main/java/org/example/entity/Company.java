@@ -4,7 +4,7 @@ package org.example.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "company")
@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @ToString(exclude = "users")
+@EqualsAndHashCode(exclude = "users")
 public class Company {
 
     @Id
@@ -22,8 +23,10 @@ public class Company {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "company")
-    private List<User> users;
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    private Set<User> users;
+//    private List<User> users = new ArrayList<>();
+
 
     public void addUser(User user) {
         users.add(user);
