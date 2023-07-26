@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @ToString(exclude = "company")
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type")
+@Inheritance(strategy = InheritanceType.JOINED)
+
 public abstract class User {
 
     @Id

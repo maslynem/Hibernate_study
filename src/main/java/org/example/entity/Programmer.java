@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.time.LocalDate;
 
 @Data
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Programmer extends User {
 
     @Enumerated(EnumType.STRING)

@@ -3,6 +3,7 @@ package org.example.entity;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.time.LocalDate;
 
 @Data
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Manager extends User {
 
     private String projectName;
