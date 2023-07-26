@@ -19,4 +19,5 @@ public class Manager extends User {
         super(id, nickname, name, birthdayDate, company, profile);
         this.projectName = projectName;
     }
+
 }
