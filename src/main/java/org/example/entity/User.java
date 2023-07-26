@@ -4,6 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.example.util.StringUtils.SPACE;
 
 @Data
 @NoArgsConstructor
@@ -11,9 +15,8 @@ import java.time.LocalDate;
 @ToString(exclude = "company")
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.JOINED)
-
-public abstract class User {
+@Builder
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +26,10 @@ public abstract class User {
     private String nickname;
 
     @Column
-    private String name;
+    private String firstName;
+
+    @Column
+    private String lastName;
 
     @Column
     private LocalDate birthdayDate;
@@ -32,7 +38,14 @@ public abstract class User {
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @Builder.Default
+    @OneToMany(mappedBy = "receiver")
+    private List<Payment> payments = new ArrayList<>();
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Profile profile;
 
+    public String fullName() {
+        return firstName + SPACE + lastName;
+    }
 }
