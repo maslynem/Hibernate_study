@@ -4,6 +4,7 @@ import lombok.Cleanup;
 import org.example.entity.Company;
 import org.example.entity.Profile;
 import org.example.entity.User;
+import org.example.util.HibernateTestUtil;
 import org.example.util.HibernateUtil;
 import org.hibernate.Hibernate;
 import org.hibernate.LazyInitializationException;
@@ -169,6 +170,18 @@ class HibernateRunnerTest {
         company.getUsers().add(user);
         System.out.println();
         session.getTransaction().commit();
+    }
+
+
+    @Test
+    void saveCompanyH2() {
+        @Cleanup SessionFactory sessionFactory = HibernateTestUtil.buildSessionFactory();
+        @Cleanup Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Company company = Company.builder().name("VK").build();
+        session.persist(company);
+        session.getTransaction().commit();
+        Assertions.assertTrue(true);
     }
 
 }
