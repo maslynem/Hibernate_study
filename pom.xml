@@ -15,6 +15,7 @@
         <hibernate.version>5.5.9.Final</hibernate.version>
         <junit.version>5.9.2</junit.version>
         <lombok.version>1.18.28</lombok.version>
+        <slf4j.version>1.7.32</slf4j.version>
 
     </properties>
 
@@ -40,12 +41,12 @@
         </dependency>
 
         <!-- H2 -->
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--            <version>1.4.200</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.h2database</groupId>-->
+        <!--            <artifactId>h2</artifactId>-->
+        <!--            <version>1.4.200</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
 
         <!-- Docker testcontainers -->
         <dependency>
@@ -76,6 +77,15 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Logging -->
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
 
     </dependencies>
 
