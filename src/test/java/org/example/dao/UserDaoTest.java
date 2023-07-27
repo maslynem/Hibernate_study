@@ -1,7 +1,10 @@
 package org.example.dao;
 
+import com.querydsl.core.types.Predicate;
 import lombok.Cleanup;
+import org.example.dto.PaymentFilter;
 import org.example.entity.Payment;
+import org.example.entity.QUser;
 import org.example.entity.User;
 import org.example.util.HibernateTestUtil;
 import org.example.util.TestDataImporter;
@@ -104,13 +107,19 @@ public class UserDaoTest {
     }
 
     @Test
-    void findAveragePaymentAmountByFirstAndLastNames() {
+    void findAvgPaymentAmountByFirstAndLastNames() {
         @Cleanup Session session = sessionFactory.openSession();
         session.beginTransaction();
-
-        Double averagePaymentAmount = userDao.findAveragePaymentAmountByFirstAndLastNames(session, "Bill", "Gates");
-        assertThat(averagePaymentAmount).isEqualTo(300.0);
-
+        PaymentFilter filter = PaymentFilter.builder()
+                .firstname("Bill")
+                .lastname(null)
+                .build();
+        Predicate predicate = QPredicate.builder()
+                .add(filter.getFirstname(), QUser.user.firstName::eq)
+                .add(filter.getLastname(), QUser.user.lastName::eq)
+                .buildAnd();
+        Double avgAmount = userDao.findAvgPaymentAmountByFilter(session, predicate);
+        assertThat(avgAmount).isEqualTo(300.0);
         session.getTransaction().commit();
     }
 
