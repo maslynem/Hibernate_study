@@ -17,6 +17,7 @@
         <mapping class="org.example.entity.User"/>
         <mapping class="org.example.entity.Profile"/>
         <mapping class="org.example.entity.Payment"/>
+        <mapping class="org.example.entity.Audit"/>
 
 
 
