@@ -11,7 +11,7 @@ import javax.persistence.*;
 @ToString(exclude = "user")
 @Entity
 @Table(name = "profile")
-public class Profile {
+public class Profile implements BaseEntity<Integer>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

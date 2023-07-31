@@ -29,7 +29,7 @@ import static org.example.util.StringUtils.SPACE;
 @Entity
 @Table(name = "users")
 @Builder
-public class User {
+public class User  implements BaseEntity<Integer> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

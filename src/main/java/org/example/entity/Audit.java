@@ -14,10 +14,10 @@ import java.io.Serializable;
 @Builder
 @Entity
 @Table(name = "audit")
-public class Audit {
+public class Audit implements BaseEntity<Integer>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Integer Id;
 
     private Serializable entityId;
     private String entityName;
