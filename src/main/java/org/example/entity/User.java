@@ -7,11 +7,18 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.FetchProfile;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.util.StringUtils.SPACE;
+@NamedEntityGraph(
+        name = "WithCompany",
+        attributeNodes = {
+                @NamedAttributeNode("company")
+        }
+)
 @FetchProfile(name = "withCompany", fetchOverrides = {
         @FetchProfile.FetchOverride(
                 entity = User.class, association = "company", mode = FetchMode.JOIN
@@ -35,6 +42,7 @@ public class User  implements BaseEntity<Integer> {
     private Integer id;
 
     @Column(unique = true)
+    @NotNull
     private String nickname;
 
     @Column
